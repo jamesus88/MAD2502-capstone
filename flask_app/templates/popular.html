@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predicted Genres</title>
+</head>
+<body>
+<a href="{{url_for('home')}}">Return Home</a>
+<center>
+    <h1>Similarly tagged movies to: {{genres|join(', ')}}</h1>
+    {% for item in top_ten %}
+    <p>{{item}}</p>
+    {% endfor %}
+</center>
+<p>Built by Aidan Hurwitz, Zac Juan, and Noah Adelson</p>
+</body>
+</html>

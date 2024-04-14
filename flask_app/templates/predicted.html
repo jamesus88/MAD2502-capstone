@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predicted Genres</title>
+</head>
+<body>
+    <a href="{{url_for('home')}}">Return Home</a>
+    {% if response.predicted_key == 'All Genres' and response.title == 'overview' %}
+    <section>
+        <center>
+            <h1>Accuracy of all genres via {{response.used_var}}</h1>
+            {% for i in range(all_genres|length) %}
+                <p>{{all_genres[i]}}: {{response.predicted[i]}}%</p>
+            {% endfor %}
+        </center>
+    </section>
+    {% elif response.predicted_key != 'All Genres' and response.title == 'overview' %}
+    <section>
+        <center>
+            <h1>Accuracy of {{response.predicted_key}} via {{response.used_var}}</h1>
+            <p>{{response.predicted_key}}: {{response.predicted[0]}}%</p>
+        </center>
+    </section>
+    {% elif response.predicted_key != 'All Genres' and response.predicted_key != "Quality Rating"%}
+    <section>
+        <center>
+            <h1>Prediction of {{response.title}} using {{response.used_var}} for {{response.predicted_key}}</h1>
+            <h2>Predicted by Model</h2>
+            <p>{{response.predicted_key}}: 
+                {% if response.predicted[0] == 0 %}No
+                {% else %}Yes{% endif %}
+            </p>
+            <h2>Actual Results</h2>
+            <p>{{response.predicted_key}}: 
+                {% if response.actual[0] == 0 %}No
+                {% else %}Yes{% endif %}
+            </p>
+        </center>
+    </section>
+    {% elif response.predicted_key != 'All Genres'%}
+    <section>
+        <center>
+            <h1>Prediction of {{response.title}} using {{response.used_var}} for {{response.predicted_key}}</h1>
+            <h2>Predicted by Model</h2>
+            <p>Quality Rating above 6.0: 
+                {% if response.predicted[0] == 0 %}No
+                {% else %}Yes{% endif %}
+            </p>
+            <h2>Actual Rating</h2>
+            <p>Rating: {{response.actual[0]}}
+            </p>
+        </center>
+    </section>
+    {% else %}
+    <section>
+        <center>
+            <h1>Prediction of Genres for {{response.title}} using {{response.used_var}}</h1>
+            <h2>Predicted by Model</h2>
+            {% if response.predicted|length < 1 %}
+            <p>Predicted Genres: None</p>
+            {% else %}
+            <p>Predicted Genres: {{response.predicted|join(', ')}}</p>
+            {% endif %}
+            <h2>Actual Genres</h2>
+            {% if response.actual|length < 1 %}
+            <p>Genres: None</p>
+            {% else %}
+            <p>Genres: {{response.actual|join(', ')}}</p>
+            {% endif %}
+        </center>
+    </section>
+    {% endif %}
+<p>Built by Aidan Hurwitz, Zac Juan, and Noah Adelson</p>
+</body>
+</html>

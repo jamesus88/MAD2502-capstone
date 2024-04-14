@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Movies</title>
+</head>
+<body>
+    <div>
+        <a href="{{url_for('home')}}">Return Home</a>
+    </div>
+    <h1>Available Movies</h1>
+    <p>Copy and paste any of the following movies into the search box on the home page</p>
+    <section>
+        <center>
+            <h2>Movies:</h2>
+                {% for movie in all_movies if 'Ã' not in movie %}
+                <p>{{movie}}</p>
+                {% endfor %}
+        </center>
+    </section>
+<p>Built by Aidan Hurwitz, Zac Juan, and Noah Adelson</p>
+</body>
+</html>

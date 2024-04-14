@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAD2502 Capstone Project</title>
+</head>
+<body>
+    <div>
+        <a href="{{url_for('home')}}">Return Home</a>
+    </div>
+    <h1>MAD2502 Capstone Project</h1>
+    <h3>Group girlscout: a movie database project</h3>
+    <p>Use the menus below to explore some of the most popular movies and see if our model correctly predicts its genre!</p>
+    <p>See <a href="{{url_for('movies')}}">All Movies</a> to see list of all available movies.</p>
+    <section>
+        <center>
+            <h2>1. Predicting Movie Genres and Ratings</h2>
+            <form method="post">
+                <h3>
+                    For <input type="movie_title" name="movie_title" id="movie_title" placeholder="Movie Title" required> 
+                    use <select name="predictor_var" id="predictor_var">
+                        <option value="reviews_cleaned">Reviews</option>
+                        <option value="keywords_cleaned">Keywords</option>
+                    </select> 
+                    to predict <select name="response_var" id="response_var">
+                        <option value="quality_binary">Quality Rating (is above 60%?)</option>
+                        <option value="all genres">All Genres</option>
+                        {% for g in all_genres %}
+                        <option value="{{g}}">{{g}}</option>
+                        {% endfor %}
+                    </select>
+                </h3>
+                <h3 style="color: red">{{msg}}</h3>
+                <button name="function" id="predict_genre" value="predict_genre" type="submit">Predict Genres!</button>
+            </form>
+        </center>
+    </section>
+    <section>
+        <center>
+            <h2>2. Get most popular movies by Genre</h2>
+            <form method="post">
+                Select genres: <select name="genres" id="genres" multiple>
+                    {% for g in all_genres %}
+                        <option value="{{g}}">{{g}}</option>
+                    {% endfor %}
+                </select><br>
+                <br>
+                <button name="function" value="get_popular" type="submit">Get movies!</button>
+            </form>
+        </center>
+    </section>
+<p>Built by Aidan Hurwitz, Zac Juan, and Noah Adelson</p>
+</body>
+</html>
