@@ -52,6 +52,9 @@ def tag_matcher(input):
     matched_movies = []
     matched_tags = []
     for movie in data: #iterates through movies in the data file
+        if 'Ã' in movie[2]:
+            continue
+        
         matches = 0
         for c in col: #Check data from csv file to see if movie matches the genres being searched
             if movie[c] == 1:
@@ -96,19 +99,7 @@ def tag_matcher(input):
     for i in range(9, -1, -1): #Iterate through the list backwards to form a top 10 ranking string
         output += f"{10-i}. "
         mystr = matched_movies[i][2]
-
-        for i in range(len(mystr)-1): #Iterate through movie titles to recaptilize words used for cleaning
-            if i == 0:
-                output += mystr[i].upper()
-                continue
-            elif mystr[i] == ' ':
-                output += " "
-                output += mystr[i+1].upper()
-            elif mystr[i-1] == " ":
-                continue
-            else:
-                output += mystr[i]
-        output += mystr[-1]
+        output += mystr.title()
         output += "\n" #Insert new line characters so it prints nicely
     return output #Return output
     

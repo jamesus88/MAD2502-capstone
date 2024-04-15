@@ -34,14 +34,14 @@ def website_functionality(movie_title, predictor_var, response_var):
             column = predictor_var + ':' + genre
             if Binary_outputs.loc[index, column].iloc[0] == 1:
                 num_6.append(genre)
-            if Movie_Data_Cleaned.loc[index, genre].iloc[0] == 1:
+            if Movie_Data_Cleaned.loc[index_initial, genre].iloc[0] == 1:
                 num_7.append(genre)
     elif response_var == 'quality_binary':
         num_6.append(Binary_outputs.loc[index, column].iloc[0])
-        num_7.append(Movie_Data_Cleaned.loc[index, 'quality_rating'].iloc[0])
+        num_7.append(Movie_Data_Cleaned.loc[index_initial, 'quality_rating'].iloc[0])
     else:
         num_6.append(Binary_outputs.loc[index, column].iloc[0])
-        num_7.append(Movie_Data_Cleaned.loc[index, response_var].iloc[0])
+        num_7.append(Movie_Data_Cleaned.loc[index_initial, response_var].iloc[0])
 
     return num_6, num_7
 
