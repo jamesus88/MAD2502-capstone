@@ -10,7 +10,6 @@ def get_genres() -> list:
     url = "https://api.themoviedb.org/3/genre/movie/list?language=en" 
 
     response = requests.get(url, headers=headers).json() # get response, convert to json
-
     return response['genres']
 
 def get_movies(year: int, page=1, min_pop=0):
