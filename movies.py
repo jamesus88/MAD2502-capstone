@@ -4,7 +4,7 @@ import db_data
 import csv
 
 all_genres = db_data.get_genres() # call function to get all genres
-file = open('./movies.csv', 'a', newline='') # open csv file to append data to 
+file = open('./movies.csv', 'w', newline='') # open csv file to append data to 
 writer = csv.writer(file, delimiter=',') # create csv writer instance
 # create list of all column headers for csv
 cols = ['id','release_date', 'title', 'quality_rating', 'revenue', 'keywords', 'reviews'] + [g['name'] for g in all_genres]

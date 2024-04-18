@@ -1,6 +1,5 @@
 import pandas as pd
 from sklearn.metrics import accuracy_score
-from flask import url_for
 
 all_genres = ['Action', 'Adventure', 'Animation', 'Comedy', 'Crime', 'Documentary'
 ,'Drama', 'Family', 'Fantasy', 'History', 'Horror', 'Music', 'Mystery', 'Romance',
@@ -18,7 +17,6 @@ def website_functionality(movie_title, predictor_var, response_var):
     index =  index_initial-6608
 
     column = predictor_var + ':' + response_var
-    print(column)
     num_6 = []
     num_7 = []
 
